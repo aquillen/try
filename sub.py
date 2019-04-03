@@ -6,3 +6,5 @@ def myfunc(x):
 
 def myfunc2(x):
 	return x**3 + x**2 + 10
+
+#John editted this
