@@ -4,30 +4,32 @@ Spyder Editor
 
 """
 
-class particle:
+class free_particle:
     
     #constructor
-    #free should be a boolean; true = free, false = stuck
-    def __init__(self,mass,x,y,z,vx,vy,vg,v0,ax,ay,ag,free):
+    def __init__(self,mass,radius,x,y,z,vx,vy,vz,ax,ay,az):
         self.mass = mass;
+        self.radius = radius;
         self.x = x;
         self.y = y;
         self.z = z;
         self.vx = vx;
         self.vy = vy;
         self.vg = vg;
-        self.v0 = v0;
         self.ax = ax;
         self.ay = ay;
         self.ag = ag;
-        self.free = free;
-        
+     
     #update position?
     #needs to also take in account other forces
-    def update_pos(a, v, dt):
-        dv = a*dt;
-        dx = v* dt;
-        return dv, dx
+    def update_pos(dt):
+        self.x = self.vx*dt;
+        self.y = self.vy*dt;
+        self.z = self.vz*dt;
+        self.vx = self.ax*dt;
+        self.vy = self.ay*dt;
+        self.vz = self.az*dt;
+
     
     #gets value of free from an existing object
     #returns boolean
