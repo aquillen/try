@@ -20,7 +20,7 @@ class solid_body():
     
   #part_list is a list of particle objects
   #axis: 0=x, 1=y, 2=z
-  def rotate(axis, angle):  # no need to pass particle list as this is defined within solid_body class
+  def rotate(self,axis, angle):  # no need to pass particle list as this is defined within solid_body class
       rotated_list = part_list
       
       #rotating about x
@@ -63,11 +63,11 @@ class solid_body():
           func = switcher.get(axis, "DEFAULT")
           return func()
       
-    rotated_list = num_to_func(axis)
-          return rotated_list
+      # rotated_list = num_to_func(axis)
+      #return rotated_list
   
   # compute center of mass and subtract it from the solid body
-    def recenter():
+    def recenter(self):
         sumx = 0
         sumy = 0
         sumz = 0
