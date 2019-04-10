@@ -1,5 +1,5 @@
 import numpy as np
-#import particle 
+import particle 
 
 class stuck_particle():
   #constructor
@@ -25,7 +25,23 @@ class solid_body():
       
       #rotating about x
       def x():
-          return
+          for i in range(0,len(part_list)):
+              #getting attributes from object
+              x0 = getattr(part_list[i], 'x')
+              y0 = getattr(part_list[i], 'y')
+              z0 = getattr(part_list[i], 'z')
+              
+              #rotation
+              y1 = y0*np.cos(angle)-z0*np.sin(angle)
+              z1 = y0*np.sin(angle)+z0*np.cos(angle)
+              x1 = x0
+              
+              #setting particle attributes to rotated values
+              setattr(part_list[i], 'x', x1)
+              setattr(part_list[i], 'y', y1)
+              setattr(part_list[i], 'y', z1)
+              
+          return #not sure what to return since this would be a destructive void method
       
       #rotating about y
       def y():
@@ -42,11 +58,13 @@ class solid_body():
               2: z
         }
       
+      #inner function to convert axis num to function
       def num_to_func(axis):
           func = switcher.get(axis, "DEFAULT")
           return func()
-   
-    
+      
+      rotated_list = num_to_func(axis)
+      return rotated_list
   
   def recenter():
       
