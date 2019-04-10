@@ -71,10 +71,20 @@ Free parameters:
 Needed for forces 
 Saturn_mass =  5.683E26 # kg 
 
-Semi_major_Pan = 133584.0E3 #km to m
+Semi_major_Pan = 133584.0E3 #in m from km 
 
 G = 6.67408E−11  #units m^2 kg-1 s-2
 
 # angular rotation rate of Pan in orbit, this gives our Coriolis force
 
 n_Pan = np.sqrt(G*Saturn_mass/Semi_major_Pan**3) 
+
+# Coordinate system
+
+centered on the center of Pan, so x,y,z = 0 is the center of mass of Pan (our rigid body)
+
+x  in the direction of rotation of Pan around Saturn
+
+y radial direction away from Saturn  
+
+z out of the ring plane
