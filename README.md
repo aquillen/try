@@ -69,5 +69,7 @@ Free parameters:
 
 Needed for forces 
 Saturn_mass =  5.683E26 # kg 
+
 Semi_major_Pan = 133584.0 #km
+
 G = 6.67408E−11  #units m^2 kg-1 s-2
