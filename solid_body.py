@@ -20,16 +20,16 @@ class solid_body():
     
   #part_list is a list of particle objects
   #axis: 0=x, 1=y, 2=z
-  def rotate(part_list, axis, angle):
+  def rotate(axis, angle):  # no need to pass particle list as this is defined within solid_body class
       rotated_list = part_list
       
       #rotating about x
       def x():
-          for i in range(0,len(part_list)):
+          for i in range(0,len(self.stuck_particles)):
               #getting attributes from object
-              x0 = getattr(part_list[i], 'x')
-              y0 = getattr(part_list[i], 'y')
-              z0 = getattr(part_list[i], 'z')
+              x0 = getattr(self.stuck_particles[i], 'x')
+              y0 = getattr(self.stuck_particles[i], 'y')
+              z0 = getattr(self.stuck_particles[i], 'z')
               
               #rotation
               y1 = y0*np.cos(angle)-z0*np.sin(angle)
@@ -37,9 +37,9 @@ class solid_body():
               x1 = x0
               
               #setting particle attributes to rotated values
-              setattr(part_list[i], 'x', x1)
-              setattr(part_list[i], 'y', y1)
-              setattr(part_list[i], 'y', z1)
+              setattr(self.stuck_particles[i], 'x', x1)
+              setattr(self.stuck_particles[i], 'y', y1)
+              setattr(self.stuck_particles[i], 'y', z1)
               
           return #not sure what to return since this would be a destructive void method
       
@@ -63,10 +63,31 @@ class solid_body():
           func = switcher.get(axis, "DEFAULT")
           return func()
       
-      rotated_list = num_to_func(axis)
-      return rotated_list
+    rotated_list = num_to_func(axis)
+          return rotated_list
   
-  def recenter():
+  # compute center of mass and subtract it from the solid body
+    def recenter():
+        sumx = 0
+        sumy = 0
+        sumz = 0
+        msum = 0
+        n = len(self.stuck_particles)
+        for i in range(0,n)):  # sums are used to compute expection of x,y,z
+            sumx += self.stuck_particles[i].x * self.stuck_particles[i].m
+            sumy += self.stuck_particles[i].y * self.stuck_particles[i].m
+            sumz += self.stuck_particles[i].z * self.stuck_particles[i].m
+            msum +=  self.stuck_particles[i].m
+    
+        #compute center of mass
+        meanx = sumx/msum
+        meany = sumy/msum
+        meanz = sumz/msum
+        # subtract center of mass from all particles
+        for i in range(0,n)):
+            self.stuck_particles[i].x -= meanx
+            self.stuck_particles[i].y -= meany
+            self.stuck_particles[i].z -= meanz
       
-      return
+
 
