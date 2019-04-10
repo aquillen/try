@@ -20,8 +20,7 @@ class free_particle:
         self.ay = ay;
         self.ag = ag;
      
-    #update position?
-    #needs to also take in account other forces
+    #update position and velocity with timestep dt
     def update_pos(self, dt):
         self.x = self.vx*dt;
         self.y = self.vy*dt;
@@ -29,11 +28,12 @@ class free_particle:
         self.vx = self.ax*dt;
         self.vy = self.ay*dt;
         self.vz = self.az*dt;
-
     
-    #gets value of free from an existing object
-    #returns boolean
-    def is_stuck(obj):
-        stuck = getattr(obj,'free')
-        return stuck
+    # zero the acceleration vector
+    def zero_accel(self):
+        self.ax = 0
+        self.ay = 0
+        self.az = 0
+    
+    
 
