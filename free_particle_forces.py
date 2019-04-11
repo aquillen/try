@@ -8,7 +8,7 @@ import solid_body
 # Semi_major_Pan is in constants, is the semi-major axis of Pan
 # coordinate system is such that Saturn is at (x,y,z) = (0,-Semi_major_Pan,0)
 def Coriolis_force(particle):
-    particle.ax += 2*n_Pan*particle.vy + n_Pan**2*particle.x
+    particle.ax += -2*n_Pan*particle.vy + n_Pan**2*particle.x
     particle.ay += 2*n_Pan*particle.vx + n_Pan**2*(particle.y + Semi_major_Pan)
 
 # Add gravitational force from Saturn on to acceleration vector of free particle
@@ -25,7 +25,7 @@ def Saturn_force(particle):
 def Pan_force(particle,solid_body):
     n = len(solid_body.stuck_particles)  # number of stuck particle in solid_body
     for i in range(0,n):  #loop over list of particles in the solid_body
-        fac = G*solid_body.stuck_particles[i].mass
+        fac = -G*solid_body.stuck_particles[i].mass
         dx = particle.x - solid_body.stuck_particles[i].x  # vector between stuck and free particle
         dy = particle.y - solid_body.stuck_particles[i].y
         dz = particle.z - solid_body.stuck_particles[i].z
