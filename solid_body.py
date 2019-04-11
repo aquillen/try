@@ -1,5 +1,6 @@
 import numpy as np
-import particle 
+import particle
+import constants
 
 class stuck_particle():
   #constructor
@@ -63,31 +64,28 @@ class solid_body():
           func = switcher.get(axis, "DEFAULT")
           return func()
       
-      # rotated_list = num_to_func(axis)
-      #return rotated_list
-  
-  # compute center of mass and subtract it from the solid body
-    def recenter(self):
-        sumx = 0
-        sumy = 0
-        sumz = 0
-        msum = 0
-        n = len(self.stuck_particles)
-        for i in range(0,n)):  # sums are used to compute expection of x,y,z
-            sumx += self.stuck_particles[i].x * self.stuck_particles[i].m
-            sumy += self.stuck_particles[i].y * self.stuck_particles[i].m
-            sumz += self.stuck_particles[i].z * self.stuck_particles[i].m
-            msum +=  self.stuck_particles[i].m
+      def recenter(self):
+          sumx = 0
+          sumy = 0
+          sumz = 0
+          msum = 0
+          n = len(self.stuck_particles)
+          for i in range(0,n):  # sums are used to compute expection of x,y,z
+              sumx += self.stuck_particles[i].x * self.stuck_particles[i].m
+              sumy += self.stuck_particles[i].y * self.stuck_particles[i].m
+              sumz += self.stuck_particles[i].z * self.stuck_particles[i].m
+              msum +=  self.stuck_particles[i].m
     
-        #compute center of mass
-        meanx = sumx/msum
-        meany = sumy/msum
-        meanz = sumz/msum
-        # subtract center of mass from all particles
-        for i in range(0,n)):
-            self.stuck_particles[i].x -= meanx
-            self.stuck_particles[i].y -= meany
-            self.stuck_particles[i].z -= meanz
+          #compute center of mass
+          meanx = sumx/msum
+          meany = sumy/msum
+          meanz = sumz/msum
+          # subtract center of mass from all particles
+          for i in range(0,n):
+              self.stuck_particles[i].x -= meanx
+              self.stuck_particles[i].y -= meany
+              self.stuck_particles[i].z -= meanz
       
 
-
+#rotated_list = num_to_func(axis)
+#return rotated_list

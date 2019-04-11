@@ -7,7 +7,7 @@ Spyder Editor
 class free_particle:
     
     #constructor
-    def __init__(self,mass,radius,x,y,z,vx,vy,vg,ax,ay,ag):
+    def __init__(self,mass,radius,x,y,z,vx,vy,vz,ax,ay,az):
         self.mass = mass;
         self.radius = radius;
         self.x = x;
@@ -15,10 +15,10 @@ class free_particle:
         self.z = z;
         self.vx = vx;
         self.vy = vy;
-        self.vg = vg;
+        self.vg = vz;
         self.ax = ax;
         self.ay = ay;
-        self.ag = ag;
+        self.ag = az;
      
     #update position and velocity with timestep dt
     def update_pos(self, dt):
