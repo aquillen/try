@@ -24,7 +24,7 @@ functions on free particles:
 <li>  If encounter takes place turn the free particle in to a bound particle and add it to the rigid body </li>
 </ul>
   
-Rigid particle class:
+Rigid particle class:  Now called stuck_particle
 
 data:
 <ul>
@@ -33,7 +33,7 @@ data:
 <li>  radius r </li>
 </ul>
   
-Rigid body:
+Rigid body:  Now called Prigid_body
 
   A set of rigid particles
   
@@ -88,3 +88,18 @@ x  in the direction of rotation of Pan around Saturn
 y radial direction away from Saturn  
 
 z out of the ring plane
+
+
+What's in the files?
+
+<ul>
+<li> particle.py    free particle class definition   </li> 
+ <li>  solid_body.py   stuck_particle and rigid_body class definitions  </li> 
+-- add_particle
+-- rotate?
+ <li>  constants.py   relevant constants  </li> 
+ <li>  free_particle_forces.py    computes accelerations on a free particle  </li> 
+ <li>  checks.ipynb  to check subroutines and display stuff  </li> 
+</ul>
+
+
