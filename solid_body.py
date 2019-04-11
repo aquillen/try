@@ -18,8 +18,13 @@ class solid_body():
     self.stuck_particles = []
     first_particle = stuck_particle(mass,radius,0,0,0)
     self.stuck_particles = np.append(self.stuck_particles,first_particle)
-    
-  #part_list is a list of particle objects
+  
+  # add a new particle to the list of stuck particles
+  def add_particle(self,mass,radius,x,y,z):
+    self.N+=1
+    s_particle = stuck_particle(mass,radius,x,y,z)
+    self.stuck_particles =np.append(self.stuck_particles,s_particle)
+  
   #axis: 0=x, 1=y, 2=z
   def rotate(self,axis, angle):  # no need to pass particle list as this is defined within solid_body class
       rotated_list = part_list
@@ -64,6 +69,7 @@ class solid_body():
           func = switcher.get(axis, "DEFAULT")
           return func()
       
+      # compute center of mass and subtract it from all particle positions
       def recenter(self):
           sumx = 0
           sumy = 0
@@ -74,13 +80,13 @@ class solid_body():
               sumx += self.stuck_particles[i].x * self.stuck_particles[i].m
               sumy += self.stuck_particles[i].y * self.stuck_particles[i].m
               sumz += self.stuck_particles[i].z * self.stuck_particles[i].m
-              msum +=  self.stuck_particles[i].m
+              msum += self.stuck_particles[i].m
     
           #compute center of mass
           meanx = sumx/msum
           meany = sumy/msum
           meanz = sumz/msum
-          # subtract center of mass from all particles
+          # subtract center of mass from all particle positions
           for i in range(0,n):
               self.stuck_particles[i].x -= meanx
               self.stuck_particles[i].y -= meany
