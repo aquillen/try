@@ -7,7 +7,7 @@ Spyder Editor
 class free_particle:
     
     #constructor
-    def __init__(self,mass,radius,x,y,z,vx,vy,vz,ax,ay,az):
+    def __init__(self,mass,radius,x,y,z,vx,vy,vz,ax=0,ay=0,az=0):
         self.mass = mass;
         self.radius = radius;
         self.x = x;
