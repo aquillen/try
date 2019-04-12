@@ -1,5 +1,5 @@
-import numpy as numpy
-import constants
+import numpy as np
+from  constants import *
 import particle
 import solid_body
 
