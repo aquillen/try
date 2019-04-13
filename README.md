@@ -24,7 +24,7 @@ functions on free particles:
 <li>  If encounter takes place turn the free particle in to a bound particle and add it to the rigid body </li>
 </ul>
   
-Rigid particle class:
+Rigid particle class:  Now called stuck_particle
 
 data:
 <ul>
@@ -33,7 +33,7 @@ data:
 <li>  radius r </li>
 </ul>
   
-Rigid body:
+Rigid body:  Now called Prigid_body
 
   A set of rigid particles
   
@@ -66,15 +66,40 @@ Free parameters:
    </ul>
 
 
-# Units:  kg, m s
+# Units:  kg, m, s
 
 Needed for forces 
 Saturn_mass =  5.683E26 # kg 
 
-Semi_major_Pan = 133584.0E3 #km to m
+Semi_major_Pan = 133584.0E3 #in m from km 
 
 G = 6.67408E−11  #units m^2 kg-1 s-2
 
-# angular rotation rate of Pan in orbit, this gives our Coriolis force
+angular rotation rate of Pan in orbit, this gives our Coriolis force
 
 n_Pan = np.sqrt(G*Saturn_mass/Semi_major_Pan**3) 
+
+# Coordinate system
+
+centered on the center of Pan, so x,y,z = 0 is the center of mass of Pan (our rigid body)
+
+x  in the direction of rotation of Pan around Saturn
+
+y radial direction away from Saturn  
+
+z out of the ring plane
+
+
+What's in the files?
+
+<ul>
+<li> particle.py    free particle class definition   </li> 
+ <li>  solid_body.py   stuck_particle and rigid_body class definitions  </li> 
+-- add_particle
+-- rotate?
+ <li>  constants.py   relevant constants  </li> 
+ <li>  free_particle_forces.py    computes accelerations on a free particle  </li> 
+ <li>  checks.ipynb  to check subroutines and display stuff  </li> 
+</ul>
+
+
