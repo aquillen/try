@@ -54,10 +54,18 @@ class Psolid_body():
     #axis: 0=x, 1=y, 2=z
     def rotate(self,axis, angle):  # no need to pass particle list as this is defined within solid_body class
         #rotated_list = part_list
+        if(axis == 0):
+            Rx(self, angle)
+        elif(axis == 1):
+            Ry(self, angle)
+        elif(axis == 2):
+            Rx(self, angle)
+        else:
+            print("INVALID AXIS")
         return
 
     #rotating about x
-    def Rx(self):
+    def Rx(self, angle):
         for i in range(0,len(self.stuck_particles)):
               #getting attributes from object
               x0 = getattr(self.stuck_particles[i], 'x')
@@ -77,16 +85,9 @@ class Psolid_body():
         return
             
     #rotating about y
-    def Ry(self):
+    def Ry(self, angle):
         return
       
     #rotating about z
-    def Rz(self):
+    def Rz(self, angle):
         return
-      
-
-    #inner function to convert axis num to function
-    def num_to_func(self,axis):
-        func = switcher.get(axis, "DEFAULT")
-        return func()
-      
