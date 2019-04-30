@@ -44,13 +44,23 @@ def compute_forces(particle,solid_body):
     Pan_force(particle,solid_body)
 
 
-# integrate with Eulerian integration a particle trajectory
+# integrate with Eulerian integration a single particle trajectory
 def integrate_free(particle,solid_body,dt,nsteps):
     tvec = []
     xvec = []
     yvec = []
     zvec = []
-#for i in range(0,nsteps):
-# more here
+    time=0
+    for i in range(0,nsteps):
+        compute_forces(particle,solid_body)
+        particle.update_pos(dt)
+        xvec=np.append(xvec,particle.x)
+        yvec=np.append(yvec,particle.y)
+        zvec=np.append(zvec,particle.z)
+        time += dt
+        tvec = np.append(tvec,time)
+    return xvec,yvec,zvec,tvec
+
+
 
 
