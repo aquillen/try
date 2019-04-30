@@ -73,9 +73,9 @@ class Psolid_body():
               z0 = getattr(self.stuck_particles[i], 'z')
               
               #rotation
+              x1 = x0
               y1 = y0*np.cos(angle)-z0*np.sin(angle)
               z1 = y0*np.sin(angle)+z0*np.cos(angle)
-              x1 = x0
               
               #setting particle attributes to rotated values
               setattr(self.stuck_particles[i], 'x', x1)
@@ -86,8 +86,39 @@ class Psolid_body():
             
     #rotating about y
     def Ry(self, angle):
+        for i in range(0, len(self.stuck_particles)):
+            #getting attributes from object
+            x0 = getattr(self.stuck_particles[i], 'x')
+            y0 = getattr(self.stuck_particles[i], 'y')
+            z0 = getattr(self.stuck_particles[i], 'z')
+
+            #rotation
+            x1 = z0*np.sin(angle)+x0*np.cos(angle)
+            y1 = y0
+            z1 = z0*np.cos(angle)-x0*np.sin(angle)
+
+            #setting particle attributes to rotated values
+            setattr(self.stuck_particles[i], 'x', x1)
+            setattr(self.stuck_particles[i], 'y', y1)
+            setattr(self.stuck_particles[i], 'z', z1)
+
         return
       
     #rotating about z
     def Rz(self, angle):
+        for i in range(0, len(self.stuck_particles)):
+            #getting attributes from object
+            x0 = getattr(self.stuck_particles[i], 'x')
+            y0 = getattr(self.stuck_particles[i], 'y')
+            z0 = getattr(self.stuck_particles[i], 'z')
+
+            #rotation
+            x1 = x0*np.cos(angle)-y0*np.sin(angle)
+            y1 = x0*np.sin(angle)+y0*np.cos(angle)
+            z1 = z0
+
+            #setting particle attributes to rotated values
+            setattr(self.stuck_particles[i], 'x', x1)
+            setattr(self.stuck_particles[i], 'y', y1)
+            setattr(self.stuck_particles[i], 'z', z1)
         return
