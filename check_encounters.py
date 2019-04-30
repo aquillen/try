@@ -17,8 +17,8 @@ def is_collision(stuck_part, free_part):
     # find distance between particles
     distance = np.sqrt((x_stuck - x_free) ** 2 + (y_stuck - y_free) ** 2 + (z_stuck - z_free) ** 2)
     if r_stuck + r_free >= distance:   # condition for free part to become stuck
-        print('yes')
+        return 1
     else:
-        print('no')
+        return 0
 
 
