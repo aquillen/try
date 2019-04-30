@@ -15,10 +15,10 @@ class free_particle:
         self.z = z;
         self.vx = vx;
         self.vy = vy;
-        self.vg = vz;
+        self.vz = vz;
         self.ax = ax;
         self.ay = ay;
-        self.ag = az;
+        self.az = az;
      
     #update position and velocity with timestep dt
     def update_pos(self, dt):
