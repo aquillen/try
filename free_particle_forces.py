@@ -34,3 +34,33 @@ def Pan_force(particle,solid_body):
         particle.ax += fac*dx
         particle.ay += fac*dy
         particle.az += fac*dz
+
+# compute all the forces on the particle after zeroing accelerations
+def compute_forces(particle,solid_body):
+    particle.zero_accel()
+    # compute all forces
+    Coriolis_force(particle)
+    Saturn_force(particle)
+    Pan_force(particle,solid_body)
+
+
+# integrate with Eulerian integration a single particle trajectory
+def integrate_free(particle,solid_body,dt,nsteps):
+    tvec = []
+    xvec = []
+    yvec = []
+    zvec = []
+    time=0
+    for i in range(0,nsteps):
+        compute_forces(particle,solid_body)
+        particle.update_pos(dt)
+        xvec=np.append(xvec,particle.x)
+        yvec=np.append(yvec,particle.y)
+        zvec=np.append(zvec,particle.z)
+        time += dt
+        tvec = np.append(tvec,time)
+    return xvec,yvec,zvec,tvec
+
+
+
+

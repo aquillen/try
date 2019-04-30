@@ -22,12 +22,14 @@ class Psolid_body():
         self.stuck_particles = np.append(self.stuck_particles,first_particle)
   
     # add a new particle to the list of stuck particles
+    @staticmethod
     def add_particle(self,mass,radius,x,y,z):
         self.N+=1
         s_particle = stuck_particle(mass,radius,x,y,z)
         self.stuck_particles =np.append(self.stuck_particles,s_particle)
 
     # compute center of mass and subtract it from all particle positions
+    @staticmethod
     def recenter(self):
         sumx = 0
         sumy = 0
@@ -52,19 +54,21 @@ class Psolid_body():
 
 
     #axis: 0=x, 1=y, 2=z
+    @staticmethod
     def rotate(self,axis, angle):  # no need to pass particle list as this is defined within solid_body class
         #rotated_list = part_list
         if(axis == 0):
-            Rx(self, angle)
+            Psolid_body.Rx(self, angle)
         elif(axis == 1):
-            Ry(self, angle)
+            Psolid_body.Ry(self, angle)
         elif(axis == 2):
-            Rx(self, angle)
+            Psolid_body.Rz(self, angle)
         else:
             print("INVALID AXIS")
         return
 
-    #rotating about x
+    #rotating about x-axis
+    @staticmethod
     def Rx(self, angle):
         for i in range(0,len(self.stuck_particles)):
               #getting attributes from object
@@ -72,10 +76,10 @@ class Psolid_body():
               y0 = getattr(self.stuck_particles[i], 'y')
               z0 = getattr(self.stuck_particles[i], 'z')
               
-              #rotation
+              #x rotation
+              x1 = x0
               y1 = y0*np.cos(angle)-z0*np.sin(angle)
               z1 = y0*np.sin(angle)+z0*np.cos(angle)
-              x1 = x0
               
               #setting particle attributes to rotated values
               setattr(self.stuck_particles[i], 'x', x1)
@@ -84,10 +88,43 @@ class Psolid_body():
               
         return
             
-    #rotating about y
+    #rotating about y-axis
+    @staticmethod
     def Ry(self, angle):
+        for i in range(0, len(self.stuck_particles)):
+            #getting attributes from object
+            x0 = getattr(self.stuck_particles[i], 'x')
+            y0 = getattr(self.stuck_particles[i], 'y')
+            z0 = getattr(self.stuck_particles[i], 'z')
+
+            #y rotation
+            x1 = z0*np.sin(angle)+x0*np.cos(angle)
+            y1 = y0
+            z1 = z0*np.cos(angle)-x0*np.sin(angle)
+
+            #setting particle attributes to rotated values
+            setattr(self.stuck_particles[i], 'x', x1)
+            setattr(self.stuck_particles[i], 'y', y1)
+            setattr(self.stuck_particles[i], 'z', z1)
+
         return
       
-    #rotating about z
+    #rotating about z-axis
+    @staticmethod
     def Rz(self, angle):
+        for i in range(0, len(self.stuck_particles)):
+            #getting attributes from object
+            x0 = getattr(self.stuck_particles[i], 'x')
+            y0 = getattr(self.stuck_particles[i], 'y')
+            z0 = getattr(self.stuck_particles[i], 'z')
+
+            #z rotation
+            x1 = x0*np.cos(angle)-y0*np.sin(angle)
+            y1 = x0*np.sin(angle)+y0*np.cos(angle)
+            z1 = z0
+
+            #setting particle attributes to rotated values
+            setattr(self.stuck_particles[i], 'x', x1)
+            setattr(self.stuck_particles[i], 'y', y1)
+            setattr(self.stuck_particles[i], 'z', z1)
         return
